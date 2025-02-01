@@ -39,8 +39,9 @@ class Settings(BaseSettings):
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",
     )
-    run = RunConfig()
-    api = ApiPrefix()
+    run: RunConfig = RunConfig()
+    api: ApiPrefix = ApiPrefix()
+    db: DatabaseConfig
 
 
 settings = Settings()
