@@ -2,8 +2,10 @@ from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import declared_attr
 
-from config import settings
-from app.utils import case_converter
+from app.utils import (
+    settings,
+    case_converter,
+)
 
 
 class Base(DeclarativeBase):
