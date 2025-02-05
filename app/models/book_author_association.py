@@ -6,6 +6,7 @@ from .mixins import IdPkMixin
 
 
 class BookAuthorAssociation(IdPkMixin, Base):
+    __tablename__ = "book_author_association"
     __table_args__ = (
         UniqueConstraint(
             "book_id",
