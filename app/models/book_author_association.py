@@ -15,5 +15,5 @@ class BookAuthorAssociation(IdPkMixin, Base):
         ),
     )
 
-    book_id: Mapped[int] = mapped_column(ForeignKey("book.id"))
-    author_id: Mapped[int] = mapped_column(ForeignKey("author.id"))
+    book_id: Mapped[int] = mapped_column(ForeignKey("books.id"))
+    author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))

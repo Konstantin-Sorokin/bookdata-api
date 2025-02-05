@@ -15,5 +15,5 @@ class BookGenreAssociation(IdPkMixin, Base):
         ),
     )
 
-    book_id: Mapped[int] = mapped_column(ForeignKey("book.id"))
-    genre_id: Mapped[int] = mapped_column(ForeignKey("genre.id"))
+    book_id: Mapped[int] = mapped_column(ForeignKey("books.id"))
+    genre_id: Mapped[int] = mapped_column(ForeignKey("genres.id"))
