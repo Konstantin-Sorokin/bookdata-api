@@ -1,9 +1,10 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy.orm import Mapped, relationship
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, relationship, mapped_column
 
 from .base import Base
-from .mixins.id_pk import IdPkMixin
+from .mixins import IdPkMixin
 
 if TYPE_CHECKING:
     from .biography import Biography
@@ -11,7 +12,7 @@ if TYPE_CHECKING:
 
 class Author(IdPkMixin, Base):
 
-    name_ru: Mapped[str]
-    name_en: Mapped[str]
+    name_ru: Mapped[str] = mapped_column(String(100))
+    name_en: Mapped[str] = mapped_column(String(100))
 
     biography: Mapped["Biography"] = relationship(back_populates="author")
