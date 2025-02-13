@@ -1,17 +1,32 @@
-from pydantic import BaseModel, ConfigDict
+from typing import TYPE_CHECKING
+
+from pydantic import BaseModel
+
+from .mixins import ConfigDictMixin, IdMixin
+
+if TYPE_CHECKING:
+    from .author import AuthorRead
+    from .genre import GenreRead
 
 
 class BookBase(BaseModel):
-    username: str
+    title: str
+    description: str | None = None
+    publication_year: int | None = None
+
+
+class BookRead(ConfigDictMixin, IdMixin, BookBase):
+    authors: list["AuthorRead"]
+    genres: list["GenreRead"]
 
 
 class BookCreate(BookBase):
     pass
 
 
-class BookRead(BookBase):
-    model_config = ConfigDict(
-        from_attributes=True,
-    )
+class BookUpdate(BookCreate):
+    pass
 
-    id: int
+
+class BookPartialUpdate(BookCreate):
+    title: str | None = None
