@@ -27,7 +27,7 @@ class BiographyRead(ConfigDictMixin, IdMixin, BiographyBase):
 
     Поля:
         id (int)
-        content (str)
+        content (str): Текст биографии
         date_of_birth (date | None)
         date_of_death (date | None)
         nationality (str | None)
@@ -41,7 +41,7 @@ class BiographyCreate(BiographyBase):
     Схема для создания биографии
 
     Поля:
-        content (str)
+        content (str): Текст биографии
         date_of_birth (date | None)
         date_of_death (date | None)
         nationality (str | None)
@@ -55,7 +55,7 @@ class BiographyUpdate(BiographyCreate):
     Схема для полного обновления биографии
 
     Поля:
-        content (str)
+        content (str): Текст биографии
         date_of_birth (date | None)
         date_of_death (date | None)
         nationality (str | None)
@@ -68,7 +68,7 @@ class BiographyPartialUpdate(BiographyCreate):
     """
     Схема для частичного обновления биографии
     Поля:
-        content (str | None)
+        content (str | None): Текст биографии
         date_of_birth (date | None)
         date_of_death (date | None)
         nationality (str | None)
