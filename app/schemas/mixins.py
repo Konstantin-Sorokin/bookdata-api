@@ -8,4 +8,4 @@ class ConfigDictMixin(BaseModel):
 
 
 class IdMixin(BaseModel):
-    id: str
+    id: int
