@@ -5,13 +5,24 @@ from app.schemas.book import BookReadMin
 from app.utils.config import settings
 
 router = APIRouter(
-    tags=["Products"],
+    tags=["Books"],
     prefix=settings.api.v1.books,
 )
 
 
 @router.get("/{book_id}/", response_model=BookReadMin)
-async def get_book(
-    book: BookReadMin = Depends(book_by_id),
-):
+async def get_book_by_id(
+    book: Annotated[BookReadMin, Depends(get_book_by_id)],
+) -> BookReadMin:
+    return book
+
+
+@router.post(
+    "/",
+    response_model=BookReadMin,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_book(
+    book: Annotated[BookReadMin, Depends(create_book)],
+) -> BookReadMin:
     return book
