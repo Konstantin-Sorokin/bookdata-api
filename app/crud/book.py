@@ -1,7 +1,9 @@
+from typing import Union
+
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import Book
-from app.schemas.book import BookCreate
+from app.schemas.book import BookCreate, BookUpdate, BookPartialUpdate
 
 
 async def get_book_by_id(session: AsyncSession, book_id: int) -> Book | None:
