@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends
+from typing import Annotated
+from fastapi import APIRouter, Depends, status
 
-from app.api.api_v1.dependencies.books import book_by_id
-from app.schemas.book import BookReadMin
+from app.api.api_v1.dependencies.books import get_book_by_id, create_book
+from app.schemas.book import BookReadMin, BookCreate
 from app.utils.config import settings
 
 router = APIRouter(
