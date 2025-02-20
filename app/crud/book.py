@@ -15,3 +15,15 @@ async def create_book(session: AsyncSession, book_in: BookCreate) -> Book:
     session.add(book)
     await session.commit()
     return book
+
+
+async def update_book(
+    session: AsyncSession,
+    book: Book,
+    book_update: Union[BookUpdate, BookPartialUpdate],
+    partial: bool = False,
+) -> Book:
+    for name, value in book_update.model_dump(exclude_unset=partial).items():
+        setattr(book, name, value)
+    await session.commit()
+    return book
