@@ -12,7 +12,7 @@ from app.utils.config import settings
 
 router = APIRouter(
     tags=["Books"],
-    prefix=settings.api.v1.books,
+    prefix=settings.api.v1.books_prefix,
 )
 
 
@@ -27,6 +27,7 @@ async def get_book_by_id(
     "/",
     response_model=BookReadMin,
     status_code=status.HTTP_201_CREATED,
+    include_in_schema=settings.api.v1.show_admin_endpoints,
 )
 async def create_book(
     book: Annotated[BookReadMin, Depends(create_book)],
@@ -38,6 +39,7 @@ async def create_book(
     "/{product_id}/",
     response_model=BookReadMin,
     status_code=status.HTTP_200_OK,
+    include_in_schema=settings.api.v1.show_admin_endpoints,
 )
 async def update_book(
     book: Annotated[BookReadMin, Depends(update_book)],
@@ -49,6 +51,7 @@ async def update_book(
     "/{product_id}/",
     response_model=BookReadMin,
     status_code=status.HTTP_200_OK,
+    include_in_schema=settings.api.v1.show_admin_endpoints,
 )
 async def update_book_partial(
     book: Annotated[BookReadMin, Depends(update_book_partial)],

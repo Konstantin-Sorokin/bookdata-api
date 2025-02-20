@@ -10,14 +10,15 @@ class RunConfig(BaseModel):
     port: int = 8000
 
 
-class ApiV1Prefix(BaseModel):
+class ApiV1Config(BaseModel):
     prefix: str = "/v1"
-    books: str = "/books"
+    books_prefix: str = "/books"
+    show_admin_endpoints: bool = True
 
 
-class ApiPrefix(BaseModel):
+class ApiConfig(BaseModel):
     prefix: str = "/api"
-    v1: ApiV1Prefix = ApiV1Prefix()
+    v1: ApiV1Config = ApiV1Config()
 
 
 class DatabaseConfig(BaseModel):
@@ -47,7 +48,7 @@ class Settings(BaseSettings):
         env_prefix="APP_CONFIG__",
     )
     run: RunConfig = RunConfig()
-    api: ApiPrefix = ApiPrefix()
+    api: ApiConfig = ApiConfig()
     db: DatabaseConfig
 
 
