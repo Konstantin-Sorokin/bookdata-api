@@ -1,14 +1,15 @@
-from typing import Annotated
+from typing import Annotated, Any
 from fastapi import APIRouter, Depends, status
 
-from .dependencies.books import (
-    get_book_by_id,
-    create_book,
-    update_book,
-    update_book_partial,
+from api.dependencies.books import (
+    get_book_by_id_dep,
+    create_book_dep,
+    update_book_dep,
+    update_book_partial_dep,
 )
 from app.schemas.book import BookReadMin
 from app.utils.config import settings
+from app.models import Book
 
 router = APIRouter(
     tags=["Books"],
@@ -16,10 +17,14 @@ router = APIRouter(
 )
 
 
-@router.get("/{book_id}/", response_model=BookReadMin)
+@router.get(
+    "/{book_id}/",
+    response_model=BookReadMin,
+    status_code=status.HTTP_200_OK,
+)
 async def get_book_by_id(
-    book: Annotated[BookReadMin, Depends(get_book_by_id)],
-) -> BookReadMin:
+    book: Annotated[Book, Depends(get_book_by_id_dep)],
+) -> Any:
     return book
 
 
@@ -30,8 +35,8 @@ async def get_book_by_id(
     include_in_schema=settings.api.v1.show_admin_endpoints,
 )
 async def create_book(
-    book: Annotated[BookReadMin, Depends(create_book)],
-) -> BookReadMin:
+    book: Annotated[Book, Depends(create_book_dep)],
+) -> Any:
     return book
 
 
@@ -42,8 +47,8 @@ async def create_book(
     include_in_schema=settings.api.v1.show_admin_endpoints,
 )
 async def update_book(
-    book: Annotated[BookReadMin, Depends(update_book)],
-) -> BookReadMin:
+    book: Annotated[Book, Depends(update_book_dep)],
+) -> Any:
     return book
 
 
@@ -54,6 +59,6 @@ async def update_book(
     include_in_schema=settings.api.v1.show_admin_endpoints,
 )
 async def update_book_partial(
-    book: Annotated[BookReadMin, Depends(update_book_partial)],
-) -> BookReadMin:
+    book: Annotated[Book, Depends(update_book_partial_dep)],
+) -> Any:
     return book
