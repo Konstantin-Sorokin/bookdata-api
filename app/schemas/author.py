@@ -2,12 +2,12 @@ from typing import TYPE_CHECKING
 
 from pydantic import BaseModel
 
-from .mixins import ConfigDictMixin, IdMixin
+from schemas.mixins import ConfigDictMixin, IdMixin
 
 
 if TYPE_CHECKING:
-    from .book import BookReadMin
-    from .biography import BiographyBase
+    from schemas.book import BookReadMin
+    from schemas.biography import BiographyBase
 
 
 class AuthorBase(BaseModel):
@@ -47,7 +47,7 @@ class AuthorReadBooks(AuthorRead):
         books (list[BookReadMin])
     """
 
-    books: list[BookReadMin]
+    books: list["BookReadMin"]
 
 
 class AuthorReadBio(AuthorRead):
@@ -61,7 +61,7 @@ class AuthorReadBio(AuthorRead):
         biography (BiographyBase)
     """
 
-    biography: BiographyBase
+    biography: "BiographyBase"
 
 
 class AuthorCreate(AuthorBase):

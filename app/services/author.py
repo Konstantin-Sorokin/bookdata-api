@@ -4,10 +4,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
 
-from app.models import Author, Biography
-from app.schemas.author import AuthorCreate, AuthorUpdate, AuthorPartialUpdate
-from app.utils import db_helper
-from app.services.base import BaseService
+from models import Author, Biography
+from schemas.author import AuthorCreate, AuthorUpdate, AuthorPartialUpdate
+from utils import db_helper
+from services.base import BaseService
 
 
 class AuthorService(BaseService):

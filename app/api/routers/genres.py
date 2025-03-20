@@ -8,9 +8,9 @@ from api.dependencies.genres import (
     update_genre_dep,
     update_genre_partial_dep,
 )
-from app.schemas.genre import GenreRead
-from app.utils.config import settings
-from app.models import Genre
+from schemas.genre import GenreRead
+from utils.config import settings
+from models import Genre
 
 router = APIRouter(
     tags=["Genres"],

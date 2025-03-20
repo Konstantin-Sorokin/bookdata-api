@@ -1,10 +1,10 @@
 from typing import Annotated
 
-from fastapi import Path, Depends, HTTPException, status, Body
+from fastapi import Path, Depends, HTTPException, status, Body, Query
 
-from app.models import Book
-from app.services import get_book_service, BookService
-from app.schemas.book import BookCreate, BookUpdate, BookPartialUpdate, BookReadMin
+from models import Book
+from services import get_book_service, BookService
+from schemas.book import BookCreate, BookUpdate, BookPartialUpdate, BookReadMin
 
 
 async def get_book_by_id_dep(
@@ -18,6 +18,25 @@ async def get_book_by_id_dep(
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"Book {book_id} not found!",
+    )
+
+
+async def search_books_dep(
+    name: Annotated[str | None, Query] = None,
+    author_id: Annotated[int | None, Query] = None,
+    genre_id: Annotated[int | None, Query] = None,
+    book_service: Annotated[BookService, Depends(get_book_service)] = None,
+) -> list[Book]:
+    if name is not None:
+        return await book_service.get_books_by_name(name=name)
+    if author_id is not None:
+        return await book_service.get_books_by_author(author_id=author_id)
+    if genre_id is not None:
+        return await book_service.get_books_by_genre(genre_id=genre_id)
+
+    raise HTTPException(
+        status_code=status.HTTP_400_BAD_REQUEST,
+        detail="Необходимо указать хотя бы один параметр для поиска (name, author_id, genre_id).",
     )
 
 

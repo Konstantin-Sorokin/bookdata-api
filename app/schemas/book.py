@@ -2,11 +2,11 @@ from typing import TYPE_CHECKING
 
 from pydantic import BaseModel
 
-from .mixins import ConfigDictMixin, IdMixin
+from schemas.mixins import ConfigDictMixin, IdMixin
 
 if TYPE_CHECKING:
-    from .author import AuthorRead
-    from .genre import GenreRead
+    from schemas.author import AuthorRead
+    from schemas.genre import GenreRead
 
 
 class BookBase(BaseModel):

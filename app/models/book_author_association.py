@@ -1,8 +1,8 @@
 from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
-from .base import Base
-from .mixins import IdPkMixin
+from models.base import Base
+from models.mixins import IdPkMixin
 
 
 class BookAuthorAssociation(IdPkMixin, Base):

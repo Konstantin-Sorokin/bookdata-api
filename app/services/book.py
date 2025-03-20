@@ -4,10 +4,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
 
-from app.models import Book, Genre, BookAuthorAssociation, BookGenreAssociation, Author
-from app.schemas.book import BookCreate, BookUpdate, BookPartialUpdate
-from app.utils import db_helper
-from app.services.base import BaseService
+from models import Book, Genre, BookAuthorAssociation, BookGenreAssociation, Author
+from schemas.book import BookCreate, BookUpdate, BookPartialUpdate
+from utils import db_helper
+from services.base import BaseService
 
 
 class BookService(BaseService):

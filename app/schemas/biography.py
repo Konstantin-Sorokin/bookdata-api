@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
 
-from .mixins import ConfigDictMixin, IdMixin
+from schemas.mixins import ConfigDictMixin, IdMixin
 
 
 class BiographyBase(BaseModel):

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .mixins import ConfigDictMixin, IdMixin
+from schemas.mixins import ConfigDictMixin, IdMixin
 
 
 class GenreBase(BaseModel):

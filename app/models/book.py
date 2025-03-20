@@ -3,12 +3,12 @@ from typing import TYPE_CHECKING
 from sqlalchemy import String, Text
 from sqlalchemy.orm import Mapped, relationship, mapped_column
 
-from .base import Base
-from .mixins import IdPkMixin
+from models.base import Base
+from models.mixins import IdPkMixin
 
 if TYPE_CHECKING:
-    from .author import Author
-    from .genre import Genre
+    from models.author import Author
+    from models.genre import Genre
 
 
 class Book(IdPkMixin, Base):

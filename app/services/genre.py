@@ -4,10 +4,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
 
-from app.models import Genre
-from app.schemas.genre import GenreCreate, GenreUpdate, GenrePartialUpdate
-from app.utils import db_helper
-from app.services.base import BaseService
+from models import Genre
+from schemas.genre import GenreCreate, GenreUpdate, GenrePartialUpdate
+from utils import db_helper
+from services.base import BaseService
 
 
 class GenreService(BaseService):
