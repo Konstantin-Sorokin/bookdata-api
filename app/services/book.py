@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
 
-from models import Book, Genre, BookAuthorAssociation, BookGenreAssociation, Author
+from models import Book, Genre, Author, BookAuthorAssociation, BookGenreAssociation
 from schemas.book import BookCreate, BookUpdate, BookPartialUpdate
 from utils import db_helper
 from services.base import BaseService
