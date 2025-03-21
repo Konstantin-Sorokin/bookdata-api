@@ -4,7 +4,7 @@ from fastapi import Path, Depends, HTTPException, status, Body, Query
 
 from models import Book
 from services import get_book_service, BookService
-from schemas.book import BookCreate, BookUpdate, BookPartialUpdate, BookReadMin
+from schemas.book import BookCreate, BookUpdate, BookPartialUpdate
 
 
 async def get_book_by_id_dep(
@@ -22,10 +22,10 @@ async def get_book_by_id_dep(
 
 
 async def search_books_dep(
+    book_service: Annotated[BookService, Depends(get_book_service)],
     name: Annotated[str | None, Query] = None,
     author_id: Annotated[int | None, Query] = None,
     genre_id: Annotated[int | None, Query] = None,
-    book_service: Annotated[BookService, Depends(get_book_service)] = None,
 ) -> list[Book]:
     if name is not None:
         return await book_service.get_books_by_name(name=name)
