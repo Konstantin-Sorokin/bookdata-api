@@ -53,7 +53,7 @@ async def create_book(
 
 
 @router.put(
-    "/{product_id}/",
+    "/{book_id}/",
     response_model=BookReadMin,
     status_code=status.HTTP_200_OK,
     include_in_schema=settings.api.show_admin_endpoints,
@@ -65,7 +65,7 @@ async def update_book(
 
 
 @router.patch(
-    "/{product_id}/",
+    "/{book_id}/",
     response_model=BookReadMin,
     status_code=status.HTTP_200_OK,
     include_in_schema=settings.api.show_admin_endpoints,
