@@ -1,13 +1,7 @@
-from typing import TYPE_CHECKING
-
 from pydantic import BaseModel
 
 from schemas.mixins import ConfigDictMixin, IdMixin
-
-
-if TYPE_CHECKING:
-    from schemas.book import BookReadMin
-    from schemas.biography import BiographyBase
+from schemas.biography import BiographyBase
 
 
 class AuthorBase(BaseModel):
@@ -36,20 +30,6 @@ class AuthorRead(ConfigDictMixin, IdMixin, AuthorBase):
     pass
 
 
-class AuthorReadBooks(AuthorRead):
-    """
-    Схема получения данных автора и его книг
-
-    Поля:
-        id (int)
-        name_ru (str)
-        name_en (str)
-        books (list[BookReadMin])
-    """
-
-    books: list["BookReadMin"]
-
-
 class AuthorReadBio(AuthorRead):
     """
     Схема получения данных автора и его биографии
@@ -61,7 +41,7 @@ class AuthorReadBio(AuthorRead):
         biography (BiographyBase)
     """
 
-    biography: "BiographyBase"
+    biography: BiographyBase
 
 
 class AuthorCreate(AuthorBase):

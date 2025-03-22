@@ -1,12 +1,8 @@
-from typing import TYPE_CHECKING
-
 from pydantic import BaseModel
 
 from schemas.mixins import ConfigDictMixin, IdMixin
-
-if TYPE_CHECKING:
-    from schemas.author import AuthorRead
-    from schemas.genre import GenreRead
+from schemas.author import AuthorRead
+from schemas.genre import GenreRead
 
 
 class BookBase(BaseModel):
@@ -42,7 +38,7 @@ class BookPreviewRead(BookReadMin):
         authors (list[AuthorRead])
     """
 
-    authors: list["AuthorRead"]
+    authors: list[AuthorRead]
 
 
 class BookFullRead(BookPreviewRead):
@@ -60,7 +56,7 @@ class BookFullRead(BookPreviewRead):
 
     description: str | None = None
     publication_year: int | None = None
-    genres: list["GenreRead"]
+    genres: list[GenreRead]
 
 
 class BookCreate(BookBase):
