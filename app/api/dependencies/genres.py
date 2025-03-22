@@ -2,9 +2,9 @@ from typing import Annotated
 
 from fastapi import Path, Depends, HTTPException, status, Body
 
-from app.models import Genre
-from app.services import get_genre_service, GenreService
-from app.schemas.genre import GenreCreate, GenreUpdate, GenrePartialUpdate
+from models import Genre
+from services import get_genre_service, GenreService
+from schemas.genre import GenreCreate, GenreUpdate, GenrePartialUpdate
 
 
 async def get_all_genres_dep(
