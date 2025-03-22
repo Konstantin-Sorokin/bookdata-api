@@ -15,6 +15,7 @@ class ApiConfig(BaseModel):
     books_prefix: str = "/books"
     authors_prefix: str = "/authors"
     genres_prefix: str = "/genres"
+    biographies_prefix: str = "/biographies"
     show_admin_endpoints: bool = True
 
 
