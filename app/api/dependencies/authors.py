@@ -21,7 +21,23 @@ async def get_author_by_id_dep(
     )
 
 
-async def search_authors_dep(
+async def get_author_with_bio_dep(
+    author_id: Annotated[int, Path],
+    author_service: Annotated[AuthorService, Depends(get_author_service)],
+) -> Author:
+    author: Author | None = await author_service.get_author_with_bio(
+        author_id=author_id
+    )
+    if author is not None:
+        return author
+
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"Author {author_id} not found!",
+    )
+
+
+async def get_authors_by_name_dep(
     name: Annotated[str, Query],
     author_service: Annotated[AuthorService, Depends(get_author_service)],
 ) -> list[Author]:
